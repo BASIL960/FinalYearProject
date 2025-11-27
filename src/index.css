@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.theme-darkmode {
+  background-color: var(--tw-bg-opacity, #121212);
+  color: theme('colors.white');
+}
+.dark{
+background-color: #000000;}
+
+.white-text{
+  color: #ffffff;
+}
+.purple {
+  font-size: 1.90rem;
+  color: #4f39f6;
+}
