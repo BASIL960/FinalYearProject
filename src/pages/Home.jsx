@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-// تأكد من أن المسار للصورة صحيح بناءً على مكان المجلد
+// تأكد من أن المسار للصورة صحيح
 import pdfIcon from '../assets/pdf-128.ico'; 
 
 const Home = ({ isDarkMode }) => {
   const [framework, setFramework] = useState('framework1');
   const [file, setFile] = useState(null);
+  const [reportType, setReportType] = useState('summary'); // 'summary' or 'detailed'
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -13,10 +14,25 @@ const Home = ({ isDarkMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (file) {
-      alert(`File "${file.name}" selected!`);
+      alert(`File "${file.name}" selected!\nReport Type: ${reportType}`);
     } else {
       alert('Please select a file.');
     }
+  };
+
+  // دالة مساعدة لتحديد ستايل خيار التقرير (لتبسيط كود الـ JSX)
+  const getRadioStyle = (type) => {
+    const isSelected = reportType === type;
+    
+    // الألوان في حالة الوضع الليلي
+    if (isDarkMode) {
+      if (isSelected) return 'border-indigo-500 ring-1 ring-indigo-500 bg-indigo-500/20';
+      return 'border-gray-600 bg-gray-800 hover:bg-gray-700';
+    }
+    
+    // الألوان في حالة الوضع النهاري
+    if (isSelected) return 'border-indigo-600 ring-1 ring-indigo-600 bg-indigo-50';
+    return 'border-gray-300 bg-white hover:bg-gray-50';
   };
 
   return (
@@ -27,7 +43,7 @@ const Home = ({ isDarkMode }) => {
       </p>
       
       <form className="max-w-md mx-auto" method="post" onSubmit={handleSubmit}>
-        {/* Toggle buttons */}
+        {/* Toggle buttons for Framework */}
         <div className={`mt-10 flex justify-center rounded-full p-1.5 space-x-2 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
           {['framework1', 'framework2', 'framework3'].map((fw, i) => (
             <button
@@ -83,15 +99,54 @@ const Home = ({ isDarkMode }) => {
           </div>
         </div>
 
+        {/* Report Type Options (Updated for Dark Mode) */}
+        <div className="mt-8">
+          <p className={`text-sm font-medium mb-3 text-left ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Report Type:</p>
+          <div className="grid grid-cols-2 gap-4">
+            
+            {/* Summary Option */}
+            <label 
+              className={`relative flex cursor-pointer rounded-lg border p-4 shadow-sm focus:outline-none transition-all ${getRadioStyle('summary')}`}
+            >
+              <input 
+                type="radio" 
+                name="report-type" 
+                value="summary" 
+                className="sr-only" 
+                checked={reportType === 'summary'}
+                onChange={() => setReportType('summary')}
+              />
+              <span className="flex flex-col text-left">
+                <span className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Summary</span>
+                <span className={`block text-xs mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Brief overview & score</span>
+              </span>
+            </label>
+
+            {/* Detailed Option */}
+            <label 
+              className={`relative flex cursor-pointer rounded-lg border p-4 shadow-sm focus:outline-none transition-all ${getRadioStyle('detailed')}`}
+            >
+              <input 
+                type="radio" 
+                name="report-type" 
+                value="detailed" 
+                className="sr-only" 
+                checked={reportType === 'detailed'}
+                onChange={() => setReportType('detailed')}
+              />
+              <span className="flex flex-col text-left">
+                <span className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Detailed</span>
+                <span className={`block text-xs mt-1 ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Full analysis & steps</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
         {/* Submit Button */}
         <div className="flex justify-center mt-8">
           <button
             type="submit"
-            className={`px-8 py-2 rounded-full font-medium transition-all shadow
-              ${isDarkMode
-                ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                : 'bg-indigo-600 text-white hover:bg-indigo-700'
-              }`}
+            className="px-8 py-2 rounded-full font-medium transition-all shadow w-full md:w-auto bg-indigo-600 text-white hover:bg-indigo-700"
           >
             Generate Report
           </button>

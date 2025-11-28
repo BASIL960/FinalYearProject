@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = ({ isDarkMode }) => {
-  const [email, setEmail] = useState('');
+  // قمنا بتغيير اسم المتغير من email إلى identifier ليقبل الاثنين
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
+    console.log({ identifier, password });
   };
 
   return (
@@ -26,19 +27,21 @@ const Login = ({ isDarkMode }) => {
 
       <div className={`mt-10 sm:mx-auto sm:w-full sm:max-w-sm p-8 rounded-xl shadow-lg border ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-100'}`}>
         <form className="space-y-6" onSubmit={handleSubmit}>
+          
+          {/* Email or Username Field */}
           <div>
-            <label htmlFor="email" className={`block text-sm font-medium leading-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>
-              Email address
+            <label htmlFor="identifier" className={`block text-sm font-medium leading-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>
+             User Name or Email address  
             </label>
             <div className="mt-2">
               <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="identifier"
+                name="identifier"
+                type="text" 
+                autoComplete="username"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
                 className={`block w-full rounded-md border-0 py-2.5 px-3 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 transition-colors
                 ${isDarkMode 
                   ? 'bg-gray-700 text-white ring-gray-600 placeholder:text-gray-400 focus:ring-indigo-500' 
@@ -47,6 +50,7 @@ const Login = ({ isDarkMode }) => {
             </div>
           </div>
 
+          {/* Password Field */}
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className={`block text-sm font-medium leading-6 ${isDarkMode ? 'text-gray-200' : 'text-gray-900'}`}>
