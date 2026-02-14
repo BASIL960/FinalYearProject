@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   // تأثير تغيير كلاس الـ HTML
   useEffect(() => {

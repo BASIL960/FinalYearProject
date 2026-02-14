@@ -7,7 +7,7 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
       <header className={`flex items-center justify-between px-6 py-3 md:py-4 shadow max-w-5xl rounded-full mx-auto w-full ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <Link to="/">
           <span className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span className='purple' style={{ color: '#4f39f6' }}>Smart</span> Compliance
+            <span className='purple' style={{ color: '#4f39f6' }}>Lytrex</span>
           </span>
         </Link>
         

@@ -37,7 +37,7 @@ const Home = ({ isDarkMode }) => {
 
   return (
     <section className="max-w-5xl mx-auto px-6 py-16 text-center">
-      <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Welcome to Smart Compliance</h1>
+      <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Welcome to Lytrex</h1>
       <p className={`text-lg md:text-xl mb-8 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>
         Your all-in-one solution for managing compliance with ease and efficiency.
       </p>
