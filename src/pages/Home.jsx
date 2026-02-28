@@ -265,13 +265,7 @@ const Home = ({ isDarkMode }) => {
             )}
           </button>
 
-          {!user && (
-            <p className="text-center text-xs text-gray-500">
-              You must be{' '}
-              <a href="/login" className="text-indigo-500 underline">logged in</a>{' '}
-              to run an audit.
-            </p>
-          )}
+    
         </form>
       </div>
 
